@@ -105,16 +105,16 @@ impl ChatBodyBuilder {
 
     pub fn with_model(mut self, model: impl Into<String>) -> Self { self.inner.model = model.into(); self }
     pub fn with_messages(mut self, messages: Vec<Message>) -> Self { self.inner.messages = messages; self }
-    pub fn with_temperature(mut self, temperature: Option<f32>) -> Self { self.inner.temperature = temperature; self }
-    pub fn with_top_p(mut self, top_p: Option<f32>) -> Self { self.inner.top_p = top_p; self }
-    pub fn with_n(mut self, n: Option<i32>) -> Self { self.inner.n = n; self }
-    pub fn with_stream(mut self, stream: Option<bool>) -> Self { self.inner.stream = stream; self }
-    pub fn with_stop(mut self, stop: Option<Vec<String>>) -> Self { self.inner.stop = stop; self }
-    pub fn with_max_tokens(mut self, max_tokens: Option<i32>) -> Self { self.inner.max_tokens = max_tokens; self }
-    pub fn with_presence_penalty(mut self, presence_penalty: Option<f32>) -> Self { self.inner.presence_penalty = presence_penalty; self }
-    pub fn with_frequency_penalty(mut self, frequency_penalty: Option<f32>) -> Self { self.inner.frequency_penalty = frequency_penalty; self }
-    pub fn with_logit_bias(mut self, logit_bias: Option<HashMap<String, String>>) -> Self { self.inner.logit_bias = logit_bias; self }
-    pub fn with_user(mut self, user: Option<String>) -> Self { self.inner.user = user; self }
+    pub fn with_temperature(mut self, temperature: f32) -> Self { self.inner.temperature = Some(temperature); self }
+    pub fn with_top_p(mut self, top_p: f32) -> Self { self.inner.top_p = Some(top_p); self }
+    pub fn with_n(mut self, n: i32) -> Self { self.inner.n = Some(n); self }
+    pub fn with_stream(mut self, stream: bool) -> Self { self.inner.stream = Some(stream); self }
+    pub fn with_stop(mut self, stop: Vec<String>) -> Self { self.inner.stop = Some(stop); self }
+    pub fn with_max_tokens(mut self, max_tokens: i32) -> Self { self.inner.max_tokens = Some(max_tokens); self }
+    pub fn with_presence_penalty(mut self, presence_penalty: f32) -> Self { self.inner.presence_penalty = Some(presence_penalty); self }
+    pub fn with_frequency_penalty(mut self, frequency_penalty: f32) -> Self { self.inner.frequency_penalty = Some(frequency_penalty); self }
+    pub fn with_logit_bias(mut self, logit_bias: HashMap<String, String>) -> Self { self.inner.logit_bias = Some(logit_bias); self }
+    pub fn with_user(mut self, user: String) -> Self { self.inner.user = Some(user); self }
 }
 
 pub trait ChatApi {
