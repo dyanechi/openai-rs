@@ -3,11 +3,9 @@ use std::collections::HashMap;
 use crate::{*, request::ApiRequest};
 use super::*;
 
-
-
 /// Given a prompt, the model will return one or more predicted completions,
 /// and can also return the probabilities of alternative tokens at each position.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, WithBuilder)]
 pub struct Completion {
 	pub id: Option<String>,
 	pub object: Option<String>,

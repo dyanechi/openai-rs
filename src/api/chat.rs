@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use crate::{*, completions::Completion, request::ApiRequest};
 use super::*;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, WithBuilder)]
 pub struct ChatBody {
 	/// ID of the model to use.
 	/// See the model endpoint compatibility table for details on which models work with the Chat API.
@@ -88,33 +88,6 @@ impl Default for ChatBody {
             user: None
         }
     }
-}
-
-impl ChatBody {
-    pub fn new() -> ChatBodyBuilder {
-        ChatBodyBuilder::new()
-    }
-}
-
-pub struct ChatBodyBuilder {
-    inner: ChatBody
-}
-impl ChatBodyBuilder {
-    fn new() -> Self { Self { inner: Default::default() } }
-    pub fn build(self) -> ChatBody { self.inner }
-
-    pub fn with_model(mut self, model: impl Into<String>) -> Self { self.inner.model = model.into(); self }
-    pub fn with_messages(mut self, messages: Vec<Message>) -> Self { self.inner.messages = messages; self }
-    pub fn with_temperature(mut self, temperature: f32) -> Self { self.inner.temperature = Some(temperature); self }
-    pub fn with_top_p(mut self, top_p: f32) -> Self { self.inner.top_p = Some(top_p); self }
-    pub fn with_n(mut self, n: i32) -> Self { self.inner.n = Some(n); self }
-    pub fn with_stream(mut self, stream: bool) -> Self { self.inner.stream = Some(stream); self }
-    pub fn with_stop(mut self, stop: Vec<String>) -> Self { self.inner.stop = Some(stop); self }
-    pub fn with_max_tokens(mut self, max_tokens: i32) -> Self { self.inner.max_tokens = Some(max_tokens); self }
-    pub fn with_presence_penalty(mut self, presence_penalty: f32) -> Self { self.inner.presence_penalty = Some(presence_penalty); self }
-    pub fn with_frequency_penalty(mut self, frequency_penalty: f32) -> Self { self.inner.frequency_penalty = Some(frequency_penalty); self }
-    pub fn with_logit_bias(mut self, logit_bias: HashMap<String, String>) -> Self { self.inner.logit_bias = Some(logit_bias); self }
-    pub fn with_user(mut self, user: String) -> Self { self.inner.user = Some(user); self }
 }
 
 pub trait ChatApi {

@@ -4,3 +4,4 @@ pub use crate::api::{
     completions::CompletionsApi,
     models::ModelsApi,
 };
+pub use easydev::builder::*;

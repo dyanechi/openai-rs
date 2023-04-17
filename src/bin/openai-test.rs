@@ -30,7 +30,7 @@ fn main() {
         .with_presence_penalty(0.35)
         .with_temperature(0.85)
         .with_frequency_penalty(1.45)
-        .with_user(String::from("th3ver9e"))
+        .with_user("th3ver9e")
         .with_messages(messages)
         .build();
 

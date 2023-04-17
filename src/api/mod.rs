@@ -15,14 +15,14 @@ const CHAT_COMPLETION_CREATE: &str = "chat/completions";
 const EDIT_CREATE: &str = "edits";
 
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Usage {
 	pub prompt_tokens: Option<u32>,
 	pub completion_tokens: Option<u32>,
 	pub total_tokens: Option<u32>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct Choice {
 	pub text: Option<String>,
 	pub index: u32,
@@ -31,17 +31,18 @@ pub struct Choice {
 	pub message: Option<Message>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
 pub struct Message {
 	pub role: Role,
 	pub content: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Role {
 	System,
 	Assistant,
+    #[default]
 	User,
 }
 impl Role {
